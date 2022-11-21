@@ -41,4 +41,37 @@ Scorpio is a grid-based two-fulid hydrodynamic (HD) and magnetohydrodynamic (MHD
 
 ---
 
+<br>
+<br>
+<br>
+<br>
+<h2 align='center'>Methods for Convective Fluxes </h2>
+
+---
+
+The Godunov-type method involves solving Riemann problem combined with reconstruction
+at the cell interfaces, which follows the procedure reconstruct-evolve-average.
+
+1. Reconstruct primitive variables with a second-order slope limiter, in which van Leer and midmod limiters are available.
+
+<center>
+  <br>
+  <img src="assets/recon_own.png" alt="flow chart"><img>
+  <br>
+
+</center>
+
+- Figure 2: 1-D illustration. Averaged cell-centred conserved variables Ui give the primitive variables $\textbf{V}_i = ( \rho_n, \textbf{v}_n, p_n, \rho_i, \textbf{v}_i, p_i,\textbf{B})^T$ . PLM constructs the interpolated variables on right side $\textbf{V}^R_{i−1/2}$ at interface $i−\frac{1}{2}$ and the left side $\textbf{V}^L_{i+1/2}$ at interface $i + \frac{1}{2}$. Each pair of left- and right- state on the same interface $i + \frac{1}{2}$ , $\textbf{V}^L_{i+1/2}$ and $\textbf{V}^R_{i+1/2}$, defines a Riemann problem.
+
+2. Riemann solvers give the solutions based on the characteristic waves to calculate the convective fluxes on cell interfaces $\textbf{F}_{l_s+1/2}$. Scorpio implemented exact and the HLL family, where HLL and HLLC solvers for HD while HLL and HLLD solvers for MHD. Typically neutrals are solved with HLLC, while ions are usually solved with HLLD solver, which includes shock, rarefaction, contact, fast magnetosonic and Alfvén waves.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+---
+
 Read the [Scorpio Wiki](https://github.com/SFG-CUHK/scorpio-test-cases/wiki) for more details and test cases.
