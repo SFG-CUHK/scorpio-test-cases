@@ -260,7 +260,7 @@ $$
 <h2 align='center'>Test cases</h2>
 
 <p align="center">
-  <img src="assets/06-c-shock-instability.png" alt="c-shock"><img>
+  <img src="https://github.com/SFG-CUHK/scorpio-test-cases/wiki/images/06-c-shock-instability.png" alt="c-shock"><img>
 </p>
 
 > > > Figure 4: The ion-neutral C-shocks, or continuous shocks describe the inflow fluid flows towards the reflective boundary with a supersonic speed, and sub-Alfvenic for the ions.
@@ -272,11 +272,11 @@ $$
 > > > Figure 5: The figures show how angular momentum (AM) can survive under the "brake" of initially uniform magnetic fields. Scorpio catches the important character that lower ionization fraction (R) can help the decoupling between the gas and magnetic field, thus the survival of AM. When R is as low as 1e-8, the gas-field is completely decoupled, which can potentially resolve the long-standing "magnetic brake catastrophe".}%~Integrated angular momentum plot over time. The angular momentum is kept from reaching zero with lower ionization ratio $R$. The part shaded in black represents positive momentum while negative momentum is due to the lack of gravitational supporting rotation.
 
 More test cases for HD, MHD and ADMHD are available in
-[https://github.com/SFG-CUHK/scorpio-test-cases/wiki](https://github.com/SFG-CUHK/scorpio-test-cases/wiki).
+[here](https://github.com/SFG-CUHK/scorpio-test-cases/wiki).
 
 ---
 
-Group Webpage: \href{http://sfg.phy.cuhk.edu.hk/}{http://sfg.phy.cuhk.edu.hk/}
+Group Webpage: [sfg.phy.cuhk.edu.hk/](http://sfg.phy.cuhk.edu.hk)
 
 References
 [^4]: David A. Tilley, Dinshaw S. Balsara, and Chad Meyer.<BR> A numerical scheme and benchmark tests for non-isothermal two-fluid ambipolar diffusion.<br>[_New Astronomy, 17(3):368–376, April 2012_.](https://www.sciencedirect.com/science/article/abs/pii/S1384107611001321)
