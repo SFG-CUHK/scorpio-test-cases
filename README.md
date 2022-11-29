@@ -214,7 +214,7 @@ The gravitational potential in real space $\phi (\textbf{x})$ is obtained using 
 
 ### Methods for Turbulence Driving
 
-For impulsive driving, energy is injected to the fluid at a constant energy input rate $dE\_{drv}/dt\_{drv}$. A field of velocity perturbations $\textbf{a}(\textbf{k})$ is set in Fourier space [[6]](). The perturbation power spectrum follows
+For impulsive driving, energy is injected to the fluid at a constant energy input rate $dE\_{drv}/dt\_{drv}$. A field of velocity perturbations $\textbf{a}(\textbf{k})$ is set in Fourier space [^6]. The perturbation power spectrum follows
 
 $$
   k^2|\textbf{a}(\textbf{k})|^2 / k^8 \exp (−8k/k_0),
@@ -257,16 +257,27 @@ $$
 <br>
 <br>
 <br>
-<br>
-<br>
+<h2 align='center'>Test cases</h2>
 
----
+<p align="center">
+  <img src="assets/06-c-shock-instability.png" alt="c-shock"><img>
+</p>
+
+> > > Figure 4: The ion-neutral C-shocks, or continuous shocks describe the inflow fluid flows towards the reflective boundary with a supersonic speed, and sub-Alfvenic for the ions.
+
+<p align="center">
+  <img src="assets/zhuo.png" alt="zhuo.png"><img>
+</p>
+
+> > > Figure 5: The figures show how angular momentum (AM) can survive under the "brake" of initially uniform magnetic fields. Scorpio catches the important character that lower ionization fraction (R) can help the decoupling between the gas and magnetic field, thus the survival of AM. When R is as low as 1e-8, the gas-field is completely decoupled, which can potentially resolve the long-standing "magnetic brake catastrophe".}%~Integrated angular momentum plot over time. The angular momentum is kept from reaching zero with lower ionization ratio $R$. The part shaded in black represents positive momentum while negative momentum is due to the lack of gravitational supporting rotation.
 
 More test cases for HD, MHD and ADMHD are available in
 [https://github.com/SFG-CUHK/scorpio-test-cases/wiki](https://github.com/SFG-CUHK/scorpio-test-cases/wiki).
 
 ---
 
-References
+Group Webpage: \href{http://sfg.phy.cuhk.edu.hk/}{http://sfg.phy.cuhk.edu.hk/}
 
-[^4]
+References
+[^4]: David A. Tilley, Dinshaw S. Balsara, and Chad Meyer.<BR> A numerical scheme and benchmark tests for non-isothermal two-fluid ambipolar diffusion.<br>[_New Astronomy, 17(3):368–376, April 2012_.](https://www.sciencedirect.com/science/article/abs/pii/S1384107611001321)
+[^6]: Frank Otto, Weiguang Ji, and Hua-bai Li.<br>Velocity Anisotropy in Self-gravitating Molecular Clouds. I. Simulation.<br>[_The Astrophysical Journal, 836(1):95, February 2017._](https://iopscience.iop.org/article/10.3847/1538-4357/836/1/95/meta)
