@@ -120,6 +120,26 @@ $$
 
 The gravitational potential in real space $\phi (\textbf{x})$ is obtained using backward FFT and taking the real part. Periodic and isolated boundary conditions are available.
 
+### Methods for Turbulence Driving
+
+For impulsive driving, energy is injected to the fluid at a constant energy input rate $dE\_{drv}/dt\_{drv}$. A field of velocity perturbations $\textbf{a}(\textbf{k})$ is set in Fourier space [[6]](). The perturbation power spectrum follows
+
+$$
+k^2|\textbf{a}(\textbf{k})|^2 / k^8 \exp (−8k/k\_0),
+$$
+
+where $k\_0$ is the driving scale. The mode $\zeta$  controls fraction of the compressive and solenoidal components in the velocity field such that
+
+$$
+ \delta\tilde{\textbf{v}}(\textbf{k}) = \underline{\underline{\textbf{P}}}(\textbf{k})\textbf{a}(\textbf{k}),
+$$
+
+$$
+\textbf{P}\_{ij}(\textbf{k}) =  \zeta \delta\_{ij} + (1 − 2\zeta)k\_ik\_j/|\textbf{k}|^2.
+$$
+
+Purely solenoidal mode $\zeta = 1$ and purely compressive mode $\zeta = 0$ can be pictured as stirring and compression (e.g. shock waves) respectively. The velocity perturbations $\delta \textbf{v}(\textbf{x})$ are shifted to ensure there is no net momentum added.
+
 ---
 
 <br>
