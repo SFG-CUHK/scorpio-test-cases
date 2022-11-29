@@ -92,9 +92,34 @@ $$
 <br>
 <br>
 <br>
+<h2 align='center'>Methods for Convective Fluxes </h2>
+
+### Methods for Ambipolar Diffusion
+
+A second-order accurate semi-implicit treatment [4], trapezoidal rule backward-difference
+formula (TR-BDF2), is used to handle the stiff ambipolar diffusion source term $\textbf{S}\_{\textbf{AD}}$. The
+two-fluid model takes the collisional term of ions and neutrals into account. Velocities
+$\textbf{v}\_i$, $\textbf{v}\_n$, energies $E\_i$ and $E\_n$ are evolved based on $\textbf{S}\_{\textbf{AD}}$. The collisional coefficient is
+
+$$
+\alpha = \alpha\_0 \max
+\left(
+1, \frac{|v\_n - v\_i|}{19.0\;\text{km s}^{-1}}
+\right),\quad
+\alpha\_0 =
+\frac{1.9 \times 10^{-19}}{m\_H (\mu\_n + \mu\_i)} \text{cm}^3\\,\text{s}^{-1}.
+$$
+
+---
+
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 
 ---
 
-Read the [Scorpio Wiki](https://github.com/SFG-CUHK/scorpio-test-cases/wiki) for more details and test cases.
+More test cases for HD, MHD and ADMHD are available in
+[https://github.com/SFG-CUHK/scorpio-test-cases/wiki](https://github.com/SFG-CUHK/scorpio-test-cases/wiki).
