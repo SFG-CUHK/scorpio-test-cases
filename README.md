@@ -43,7 +43,62 @@ Scorpio is a grid-based two-fulid hydrodynamic (HD) and magnetohydrodynamic (MHD
 <br>
 <br>
 <br>
-<h2 align='center'>Methods for Convective Fluxes </h2>
+<h2 align='center'>Governing equations</h2>
+
+---
+
+The conservative form: conserved variables $\mathbf{U}$, convective fluxes $\mathbf{F\_s} (\mathbf{U})$, self-gravity $\mathbf{S\_{G}}$, ambipolar diffusion $\mathbf{S\_{AD}}$
+
+$$
+\mathbf{U} =
+		\begin{pmatrix}
+			\rho\_n \\
+			\rho\_n \mathbf{v\_n} \\
+			E\_n\\
+			\rho\_i \\
+			\rho\_i \mathbf{v\_i} \\
+			\mathbf{B} \\
+			E\_i
+		\end{pmatrix}, ~~~~~~~
+	\mathbf{F\_s} (\mathbf{U}) =
+	\begin{pmatrix}
+		\rho\_n v\_{s,n}\\
+		\rho\_n v\_{s,n} \mathbf{v\_n} + p\_n\mathbf{I}\\
+		(E\_n+p\_n)v\_{s,n}\\
+		\rho\_i v\_{s,i}\\
+		\rho v\_{s,i} \mathbf{v\_i} + p\_{t,i}\mathbf{I} - B\_s\mathbf{B}\\
+		v\_{s,i}\mathbf{B} - B\_s\mathbf{v\_i}\\
+		(E\_i+p\_{t,i})v\_{s,i} - B\_s(\mathbf{v\_i}\cdot B)
+	\end{pmatrix}, ~~~~~~~
+	\mathbf{S\_{G}}(\mathbf{U}) =
+\begin{pmatrix}
+	0\\
+	-\rho\_n\nabla\phi\\
+	-\rho\_n\mathbf{v\_n}\cdot\nabla\phi\\
+	0\\
+	-\rho\_i\nabla\phi\\
+	0\\
+	-\rho\_i\mathbf{v\_i}\cdot\nabla\phi
+\end{pmatrix}, ~~~~~~~
+\mathbf{S\_{AD}(\mathbf{U})} =
+\begin{pmatrix}
+	0\\
+	-\alpha\rho\_i\rho\_n(\mathbf{v\_n}-\mathbf{v\_i})\\
+	\frac{3\alpha}{\mu\_i+\mu\_n}\left[\mu\_i\rho\_n\epsilon\_i(\Gamma\_i-1)-\mu\_n\rho\_i\epsilon\_n(\Gamma\_n-1)\right]+\alpha\frac{\mu\_i}{\mu\_i+\mu\_n}\rho\_i\rho\_n(\mathbf{v\_n}-\mathbf{v\_i})^2\\
+	0\\
+	\alpha\rho\_i\rho\_n(\mathbf{v\_n}-\mathbf{v\_i})\\
+	0\\
+	\frac{3\alpha}{\mu\_i+\mu\_n}\left[\mu\_n\rho\_i\epsilon\_n(\Gamma\_n-1)-\mu\_i\rho\_n\epsilon\_i(\Gamma\_i-1)\right]+\alpha\frac{\mu\_n}{\mu\_i+\mu\_n}\rho\_i\rho\_n(\mathbf{v\_n}-\mathbf{v\_i})^2\\
+\end{pmatrix}
+$$
+
+---
+
+<br>
+<br>
+<br>
+<br>
+<h2 align='center'>Methods for Convective Fluxes</h2>
 
 ---
 
@@ -110,6 +165,9 @@ $$
 \frac{1.9 \times 10^{-19}}{m\_H (\mu\_n + \mu\_i)} \text{cm}^3\\,\text{s}^{-1}.
 $$
 
+<br>
+<br>
+
 ### Methods for Self-Gravity
 
 The Poisson’s equation of self-gravity $\textbf{S}\_\textbf{G}$ is solved using FFT with the global density $\tilde{\rho}(\textbf{k})$ in Fourier space and multiplying the Green’s function kernel,
@@ -119,6 +177,9 @@ $$
 $$
 
 The gravitational potential in real space $\phi (\textbf{x})$ is obtained using backward FFT and taking the real part. Periodic and isolated boundary conditions are available.
+
+<br>
+<br>
 
 ### Methods for Turbulence Driving
 
