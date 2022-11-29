@@ -50,16 +50,16 @@ Scorpio is a grid-based two-fulid hydrodynamic (HD) and magnetohydrodynamic (MHD
 The conservative form: conserved variables $\mathbf{U}$, convective fluxes $\mathbf{F\_s} (\mathbf{U})$, self-gravity $\mathbf{S\_{G}}$, ambipolar diffusion $\mathbf{S\_{AD}}$
 
 $$
-\mathbf{U} =
-		\begin{pmatrix}
-			\rho\_n \\
-			\rho\_n \mathbf{v\_n} \\
-			E\_n\\
-			\rho\_i \\
-			\rho\_i \mathbf{v\_i} \\
-			\mathbf{B} \\
-			E\_i
-		\end{pmatrix},
+  \mathbf{U} =
+  \begin{pmatrix}
+    \rho\_n \\
+    \rho\_n \mathbf{v\_n} \\
+    E\_n\\
+    \rho\_i \\
+    \rho\_i \mathbf{v\_i} \\
+    \mathbf{B} \\
+    E\_i
+  \end{pmatrix},
 $$
 
 $$
@@ -77,45 +77,45 @@ $$
 
 $$
 	\mathbf{S\_{G}}(\mathbf{U}) =
-\begin{pmatrix}
-	0\\
-	-\rho\_n\nabla\phi\\
-	-\rho\_n\mathbf{v\_n}\cdot\nabla\phi\\
-	0\\
-	-\rho\_i\nabla\phi\\
-	0\\
-	-\rho\_i\mathbf{v\_i}\cdot\nabla\phi
-\end{pmatrix},
+  \begin{pmatrix}
+    0\\
+    -\rho\_n\nabla\phi\\
+    -\rho\_n\mathbf{v\_n}\cdot\nabla\phi\\
+    0\\
+    -\rho\_i\nabla\phi\\
+    0\\
+    -\rho\_i\mathbf{v\_i}\cdot\nabla\phi
+  \end{pmatrix},
 $$
 
 $$
-\mathbf{S\_{AD}(\mathbf{U})} =
-\begin{pmatrix}
-	0\\
-	-\alpha\rho\_i\rho\_n(\mathbf{v\_n}-\mathbf{v\_i})\\
-	\frac{3\alpha}{\mu\_i+\mu\_n}\left[\mu\_i\rho\_n\epsilon\_i(\Gamma\_i-1)-\mu\_n\rho\_i\epsilon\_n(\Gamma\_n-1)\right]+\alpha\frac{\mu\_i}{\mu\_i+\mu\_n}\rho\_i\rho\_n(\mathbf{v\_n}-\mathbf{v\_i})^2\\
-	0\\
-	\alpha\rho\_i\rho\_n(\mathbf{v\_n}-\mathbf{v\_i})\\
-	0\\
-	\frac{3\alpha}{\mu\_i+\mu\_n}\left[\mu\_n\rho\_i\epsilon\_n(\Gamma\_n-1)-\mu\_i\rho\_n\epsilon\_i(\Gamma\_i-1)\right]+\alpha\frac{\mu\_n}{\mu\_i+\mu\_n}\rho\_i\rho\_n(\mathbf{v\_n}-\mathbf{v\_i})^2\\
-\end{pmatrix}
+  \mathbf{S\_{AD}(\mathbf{U})} =
+  \begin{pmatrix}
+    0\\
+    -\alpha\rho\_i\rho\_n(\mathbf{v\_n}-\mathbf{v\_i})\\
+    \frac{3\alpha}{\mu\_i+\mu\_n}\left[\mu\_i\rho\_n\epsilon\_i(\Gamma\_i-1)-\mu\_n\rho\_i\epsilon\_n(\Gamma\_n-1)\right]+\alpha\frac{\mu\_i}{\mu\_i+\mu\_n}\rho\_i\rho\_n(\mathbf{v\_n}-\mathbf{v\_i})^2\\
+    0\\
+    \alpha\rho\_i\rho\_n(\mathbf{v\_n}-\mathbf{v\_i})\\
+    0\\
+    \frac{3\alpha}{\mu\_i+\mu\_n}\left[\mu\_n\rho\_i\epsilon\_n(\Gamma\_n-1)-\mu\_i\rho\_n\epsilon\_i(\Gamma\_i-1)\right]+\alpha\frac{\mu\_n}{\mu\_i+\mu\_n}\rho\_i\rho\_n(\mathbf{v\_n}-\mathbf{v\_i})^2\\
+  \end{pmatrix}
 $$
 
 <br>
 <br>
 
 $$
-\nabla^2\phi=4\pi G(\rho\_n+\rho\_i)
+  \nabla^2\phi=4\pi G(\rho\_n+\rho\_i)
 $$
 
 $$
-\nabla\cdot \mathbf{B} = 0
+  \nabla\cdot \mathbf{B} = 0
 $$
 
 where
 
 $$
-E\_n=\frac{p\_n}{\Gamma\_n-1} + \frac{\rho\_n|\mathbf{v\_n}|^2}{2}, ~~~~~~ E\_i=\frac{p\_i}{\Gamma\_i-1} + \frac{\rho\_i|\mathbf{v\_i}|^2}{2} + \frac{|\mathbf{B}|^2}{2}
+  E\_n=\frac{p\_n}{\Gamma\_n-1} + \frac{\rho\_n|\mathbf{v\_n}|^2}{2}, ~~~~~~ E\_i=\frac{p\_i}{\Gamma\_i-1} + \frac{\rho\_i|\mathbf{v\_i}|^2}{2} + \frac{|\mathbf{B}|^2}{2}
 $$
 
 Discretized form:
@@ -151,17 +151,17 @@ The Godunov-type method involves solving Riemann problem combined with reconstru
 3. The cell-centered conserved variables Ui,j,k are updated in time from $N$ to $N + 1$ by
 
 $$
-\begin{aligned}
-\textbf{U}^{N+1}\_{i,j,k} = \textbf{U}^{N}\_{i,j,k} &- \frac{\Delta t}{\Delta x} \left(
-\textbf{F}\_{x,i+1/2,j,k} - \textbf{F}\_{x,i-1/2,j,k}
-\right)\\
-& - \frac{\Delta t}{\Delta x} \left(
-\textbf{F}\_{x,i,j+1/2,k} - \textbf{F}\_{x,i,j-1/2,k}
-\right) \\
-&- \frac{\Delta t}{\Delta x} \left(
-\textbf{F}\_{x,i,j,k+1/2} - \textbf{F}\_{x,i,j,k-1/2}
-\right)
-\end{aligned}
+  \begin{aligned}
+  \textbf{U}^{N+1}\_{i,j,k} = \textbf{U}^{N}\_{i,j,k} &- \frac{\Delta t}{\Delta x} \left(
+  \textbf{F}\_{x,i+1/2,j,k} - \textbf{F}\_{x,i-1/2,j,k}
+  \right)\\
+  & - \frac{\Delta t}{\Delta x} \left(
+  \textbf{F}\_{x,i,j+1/2,k} - \textbf{F}\_{x,i,j-1/2,k}
+  \right) \\
+  &- \frac{\Delta t}{\Delta x} \left(
+  \textbf{F}\_{x,i,j,k+1/2} - \textbf{F}\_{x,i,j,k-1/2}
+  \right)
+  \end{aligned}
 $$
 
 - _Constrained Transport Algorithm_ ensures magnetic flux conservation and divergence-free constraint $\nabla \cdot \textbf{B}$ on each grid cell. The electric fields (electromotive force or EMF) $\epsilon = - \textbf{v} \times \textbf{B}$ are line-averaged along the cell edges. The area-averaged magnetic fields are then evaluated on the cell-centred interface $\textbf{B}\_{i+1/2,j,k}$ by the induction equation.
@@ -188,15 +188,12 @@ two-fluid model takes the collisional term of ions and neutrals into account. Ve
 $\textbf{v}\_i$, $\textbf{v}\_n$, energies $E\_i$ and $E\_n$ are evolved based on $\textbf{S}\_{\textbf{AD}}$. The collisional coefficient is
 
 $$
-
-\alpha = \alpha_0 \max
-\left(
-1, \frac{|v_n - v_i|}{19.0\;\text{km s}^{-1}}
-\right),\quad
-\alpha_0 =
-\frac{1.9 \times 10^{-19}}{m_H (\mu_n + \mu_i)} \text{cm}^3\\,\text{s}^{-1}.
-
-
+  \alpha = \alpha_0 \max
+  \left(
+    1, \frac{|v_n - v_i|}{19.0\;\text{km s}^{-1}}
+  \right),\quad
+  \alpha_0 =
+  \frac{1.9 \times 10^{-19}}{m_H (\mu_n + \mu_i)} \text{cm}^3\\,\text{s}^{-1}.
 $$
 
 <br>
@@ -207,10 +204,7 @@ $$
 The Poisson’s equation of self-gravity $\textbf{S}\_\textbf{G}$ is solved using FFT with the global density $\tilde{\rho}(\textbf{k})$ in Fourier space and multiplying the Green’s function kernel,
 
 $$
-
-\tilde{\phi}(\textbf{k}) = −\tilde{\rho}(\textbf{k})/|\textbf{k}|^2.
-
-
+  \tilde{\phi}(\textbf{k}) = −\tilde{\rho}(\textbf{k})/|\textbf{k}|^2.
 $$
 
 The gravitational potential in real space $\phi (\textbf{x})$ is obtained using backward FFT and taking the real part. Periodic and isolated boundary conditions are available.
@@ -223,26 +217,17 @@ The gravitational potential in real space $\phi (\textbf{x})$ is obtained using 
 For impulsive driving, energy is injected to the fluid at a constant energy input rate $dE\_{drv}/dt\_{drv}$. A field of velocity perturbations $\textbf{a}(\textbf{k})$ is set in Fourier space [[6]](). The perturbation power spectrum follows
 
 $$
-
-k^2|\textbf{a}(\textbf{k})|^2 / k^8 \exp (−8k/k_0),
-
-
+  k^2|\textbf{a}(\textbf{k})|^2 / k^8 \exp (−8k/k_0),
 $$
 
 where $k\_0$ is the driving scale. The mode $\zeta$  controls fraction of the compressive and solenoidal components in the velocity field such that
 
 $$
-
-\delta\tilde{\textbf{v}}(\textbf{k}) = \underline{\underline{\textbf{P}}}(\textbf{k})\textbf{a}(\textbf{k}),
-
-
+  \delta\tilde{\textbf{v}}(\textbf{k}) = \underline{\underline{\textbf{P}}}(\textbf{k})\textbf{a}(\textbf{k}),
 $$
 
 $$
-
-\textbf{P}\_{ij}(\textbf{k}) =  \zeta \delta\_{ij} + (1 − 2\zeta)k_ik_j/|\textbf{k}|^2.
-
-
+  \textbf{P}\_{ij}(\textbf{k}) =  \zeta \delta\_{ij} + (1 − 2\zeta)k_ik_j/|\textbf{k}|^2.
 $$
 
 Purely solenoidal mode $\zeta = 1$ and purely compressive mode $\zeta = 0$ can be pictured as stirring and compression (e.g. shock waves) respectively. The velocity perturbations $\delta \textbf{v}(\textbf{x})$ are shifted to ensure there is no net momentum added.
