@@ -101,6 +101,9 @@ $$
 \end{pmatrix}
 $$
 
+<br>
+<br>
+
 $$
 \nabla^2\phi=4\pi G(\rho\_n+\rho\_i)
 $$
@@ -113,6 +116,12 @@ where
 
 $$
 E\_n=\frac{p\_n}{\Gamma\_n-1} + \frac{\rho\_n|\mathbf{v\_n}|^2}{2}, ~~~~~~ E\_i=\frac{p\_i}{\Gamma\_i-1} + \frac{\rho\_i|\mathbf{v\_i}|^2}{2} + \frac{|\mathbf{B}|^2}{2}
+$$
+
+Discretized form:
+
+$$
+	\frac{\bar{\mathbf{U}}^{N+1} - \bar{\mathbf{U}}^{N}}{\Delta t} = - \sum\_{s=1}^{D\_{max}} \frac{\mathbf{F}\_{l\_s+1/2} - \mathbf{F}\_{l\_s-1/2}}{\Delta x\_{l\_s}} + \mathbf{S\_{G}} + \mathbf{S\_{AD}}
 $$
 
 ---
