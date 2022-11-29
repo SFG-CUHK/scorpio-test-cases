@@ -9,10 +9,10 @@ The Scorpio MHD code with two fluid ambipolar diffusion solvers will be released
 Scorpio is a grid-based two-fulid hydrodynamic (HD) and magnetohydrodynamic (MHD) code, with ambipolar diffusion (AD), self-gravity (SG) and turbulence driving.The development of Scorpio is led by Dr. Hsiang Hsu Wang based on his experiencewith the MHD code Antares and inspired by our AD observation on NGC 6334 (Tanget al. 2018). Both Antares and NGC 6334 belong to the Scorpio constellation, thus the name of the code.
 
 - Written in FORTRAN and MPI-parallelized.
-- Based on Godunov-type shock-capturing finite volume method, the conservationparts are evolved in second-order of accuracy both in space and time, includingRiemann solvers (HLL, HLLC, HLLD) combined with a piecewise linear method(PLM) interpolation and Minimod limiter.
+- Based on Godunov-type shock-capturing finite volume method, the conservation parts are evolved in second-order of accuracy both in space and time, includingRiemann solvers (HLL, HLLC, HLLD) combined with a piecewise linear method(PLM) interpolation and Minmod limiter.
 - The Poisson’s equation for self-gravity is solved using Fast Fourier Transformation(FFT) method.
-- Turbulencing driving to perturb velocity field using FFT.
-- The collision term of ambipolar diffusion is integrated using semi-implicit methodto overcome the stiffness.
+- Turbulence driving to perturb velocity field using FFT.
+- The collision term of ambipolar diffusion is integrated using semi-implicit method to overcome the stiffness.
 - Time integration with the second-order Runge-Kutta method (RK2).
 - Several featured test cases are presented to demonstrate the accuracy of Scorpio.
 
@@ -27,9 +27,9 @@ Scorpio is a grid-based two-fulid hydrodynamic (HD) and magnetohydrodynamic (MHD
 ---
 
 - In weakly ionized environments such as molecular clouds of ionization ratio $\sim 10^{-9} − 10^{-6}$, where the non-ideal effect, ambipolar diffusion (AD), plays an important role, decoupling of ions and neutrals cannot be ignored.
-- Single-fluid ideal MHD apporach cannot cater our needs to study the physics of ions and neutrals accurately. Due to computational complexity, simplified approaches such as single-fluid strong coupling approximation and two-fluid heavy-ion approximation are commonly adopted in expense of accuracy.
+- Single-fluid ideal MHD approach cannot cater our needs to study the physics of ions and neutrals accurately. Due to computational complexity, simplified approaches such as single-fluid strong coupling approximation and two-fluid heavy-ion approximation are commonly adopted in expense of accuracy.
 - Therefore, we developed a novel two-fluid non-ideal MHD code including AD effect to better capture the physics of ions and neutrals using the AD model [(Draine, 1986)](<https://doi.org/10.1016/0038-1101(86)90210-8>).
-- Amipolar diffusion has been observationally confirmed by [Li and Houde (2008)](https://iopscience.iop.org/article/10.1086/529581), where the decoupling of ions and neutrals is shown in the turbulent velocity dispersion spectra. [Tang et al. (2018)](https://iopscience.iop.org/article/10.3847/1538-4357/aacb82/meta) has shown that the ion-neutral decoupling scale is smaller than $0.4$ pc by observing HCO<sup>+</sup> and HCN, in which the decoupling scale is larger than the molecular cloud core. The AD model further studies the issue in disk formation.
+- Ambipolar diffusion has been observationally confirmed by [Li and Houde (2008)](https://iopscience.iop.org/article/10.1086/529581), where the decoupling of ions and neutrals is shown in the turbulent velocity dispersion spectra. [Tang et al. (2018)](https://iopscience.iop.org/article/10.3847/1538-4357/aacb82/meta) has shown that the ion-neutral decoupling scale is smaller than $0.4$ pc by observing HCO<sup>+</sup> and HCN, in which the decoupling scale is larger than the molecular cloud core. The AD model further studies the issue in disk formation.
 
 <p align="center">
   <img src="assets/scorpio_flowchat11.jpg" alt="flow chart"><img>
@@ -79,6 +79,14 @@ $$
 $$
 
 - Constrained Transport Algorithm ensures magnetic flux conservation and divergence-free constraint $\nabla \cdot \textbf{B}$ on each grid cell. The electric fields (electromotive force or EMF) $\epsilon = - \textbf{v} \times \textbf{B}$ are line-averaged along the cell edges. The area-averaged magnetic fields are then evaluated on the cell-centred interface $\textbf{B}\_{i+1/2,j,k}$ by the induction equation.
+
+<p align="center">
+  <img src="assets/ct1_best.jpg" alt="Magnetic field on grid face and edge centers."><img>
+</p>
+
+> > > <p>Figure 3: Illustration in Cartesian Coordinates. $\textbf{U}$ is the cell-centred volume-averaged conserved variables. The interface-centred area-averaged $x$-component of magnetic field $\textbf{B}_{x,i+1/2,j,k}$ coincides with interface flux $\textbf{F}_{x,i+1/2,j,k}$. Line-averaged EMF are located on the edges.
+
+</p>
 
 <br>
 <br>
