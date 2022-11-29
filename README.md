@@ -59,7 +59,10 @@ $$
 			\rho\_i \mathbf{v\_i} \\
 			\mathbf{B} \\
 			E\_i
-		\end{pmatrix}, ~~~~~~~
+		\end{pmatrix},
+$$
+
+$$
 	\mathbf{F\_s} (\mathbf{U}) =
 	\begin{pmatrix}
 		\rho\_n v\_{s,n}\\
@@ -69,7 +72,10 @@ $$
 		\rho v\_{s,i} \mathbf{v\_i} + p\_{t,i}\mathbf{I} - B\_s\mathbf{B}\\
 		v\_{s,i}\mathbf{B} - B\_s\mathbf{v\_i}\\
 		(E\_i+p\_{t,i})v\_{s,i} - B\_s(\mathbf{v\_i}\cdot B)
-	\end{pmatrix}, ~~~~~~~
+	\end{pmatrix},
+$$
+
+$$
 	\mathbf{S\_{G}}(\mathbf{U}) =
 \begin{pmatrix}
 	0\\
@@ -79,7 +85,10 @@ $$
 	-\rho\_i\nabla\phi\\
 	0\\
 	-\rho\_i\mathbf{v\_i}\cdot\nabla\phi
-\end{pmatrix}, ~~~~~~~
+\end{pmatrix},
+$$
+
+$$
 \mathbf{S\_{AD}(\mathbf{U})} =
 \begin{pmatrix}
 	0\\
