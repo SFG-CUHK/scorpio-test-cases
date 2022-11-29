@@ -110,6 +110,16 @@ $$
 \frac{1.9 \times 10^{-19}}{m\_H (\mu\_n + \mu\_i)} \text{cm}^3\\,\text{s}^{-1}.
 $$
 
+### Methods for Self-Gravity
+
+The Poisson’s equation of self-gravity $\textbf{S}\_\textbf{G}$ is solved using FFT with the global density $\tilde{\rho}(\textbf{k})$ in Fourier space and multiplying the Green’s function kernel,
+
+$$
+\tilde{\phi}(\textbf{k}) = −\tilde{\rho}(\textbf{k})/|\textbf{k}|^2.
+$$
+
+The gravitational potential in real space $\phi (\textbf{x})$ is obtained using backward FFT and taking the real part. Periodic and isolated boundary conditions are available.
+
 ---
 
 <br>
