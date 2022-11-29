@@ -134,8 +134,7 @@ $$
 
 ---
 
-The Godunov-type method involves solving Riemann problem combined with reconstruction
-at the cell interfaces, which follows the procedure reconstruct-evolve-average.
+The Godunov-type method involves solving Riemann problem combined with reconstruction at the cell interfaces, which follows the procedure reconstruct-evolve-average.
 
 1. Reconstruct primitive variables with a second-order slope limiter, in which van Leer and midmod limiters are available.
 
@@ -152,7 +151,6 @@ at the cell interfaces, which follows the procedure reconstruct-evolve-average.
 3. The cell-centered conserved variables Ui,j,k are updated in time from $N$ to $N + 1$ by
 
 $$
-
 \begin{aligned}
 \textbf{U}^{N+1}\_{i,j,k} = \textbf{U}^{N}\_{i,j,k} &- \frac{\Delta t}{\Delta x} \left(
 \textbf{F}\_{x,i+1/2,j,k} - \textbf{F}\_{x,i-1/2,j,k}
@@ -164,11 +162,9 @@ $$
 \textbf{F}\_{x,i,j,k+1/2} - \textbf{F}\_{x,i,j,k-1/2}
 \right)
 \end{aligned}
-
-
 $$
 
-- Constrained Transport Algorithm ensures magnetic flux conservation and divergence-free constraint $\nabla \cdot \textbf{B}$ on each grid cell. The electric fields (electromotive force or EMF) $\epsilon = - \textbf{v} \times \textbf{B}$ are line-averaged along the cell edges. The area-averaged magnetic fields are then evaluated on the cell-centred interface $\textbf{B}\_{i+1/2,j,k}$ by the induction equation.
+- _Constrained Transport Algorithm_ ensures magnetic flux conservation and divergence-free constraint $\nabla \cdot \textbf{B}$ on each grid cell. The electric fields (electromotive force or EMF) $\epsilon = - \textbf{v} \times \textbf{B}$ are line-averaged along the cell edges. The area-averaged magnetic fields are then evaluated on the cell-centred interface $\textbf{B}\_{i+1/2,j,k}$ by the induction equation.
 
 <p align="center">
   <img src="assets/ct1_best.jpg" alt="Magnetic field on grid face and edge centers."><img>
@@ -182,11 +178,11 @@ $$
 <br>
 <br>
 <br>
-<h2 align='center'>Methods for Convective Fluxes </h2>
+<h2 align='center'>Methods for Source Terms</h2>
 
 ### Methods for Ambipolar Diffusion
 
-A second-order accurate semi-implicit treatment [4], trapezoidal rule backward-difference
+A second-order accurate semi-implicit treatment [^4], trapezoidal rule backward-difference
 formula (TR-BDF2), is used to handle the stiff ambipolar diffusion source term $\textbf{S}\_{\textbf{AD}}$. The
 two-fluid model takes the collisional term of ions and neutrals into account. Velocities
 $\textbf{v}\_i$, $\textbf{v}\_n$, energies $E\_i$ and $E\_n$ are evolved based on $\textbf{S}\_{\textbf{AD}}$. The collisional coefficient is
@@ -251,6 +247,25 @@ $$
 
 Purely solenoidal mode $\zeta = 1$ and purely compressive mode $\zeta = 0$ can be pictured as stirring and compression (e.g. shock waves) respectively. The velocity perturbations $\delta \textbf{v}(\textbf{x})$ are shifted to ensure there is no net momentum added.
 
+<br>
+<br>
+
+### Methods for Time Inegration
+
+- _RK2_ updates all the effects from convective fluxes $\mathbf{F\_s}$, source terms $\mathbf{S\_{G}}$ and $\mathbf{S\_{AD}}$ from $\bar{U}^{N}$ to $\bar{U}^{N+1}$ for each grid by advancing time from $N$ to $N+1$.
+
+- _CFL condition_ gives the adaptive timestep, where $0 < C \leq 1$,
+
+$$
+  \Delta t=\min{(\Delta t\_n,\Delta t\_i, \Delta t\_{grav})}
+$$
+
+$$
+  \Delta t=C\min{\left(	 \frac{\Delta x\_{l\_s}}{|\mathbf{v}|+c\_s},\frac{\Delta x\_{l\_s}}{|\mathbf{v}|+c\_{fast}}, {\sqrt{\frac{\Delta x\_{l\_s}}{|\textbf{g}|}}}\right)},
+$$
+
+> > where $c\_s$ and $c\_{fast}$ are the sound speed and fast magnetosonic speed respectively.
+
 ---
 
 <br>
@@ -265,5 +280,8 @@ Purely solenoidal mode $\zeta = 1$ and purely compressive mode $\zeta = 0$ can b
 More test cases for HD, MHD and ADMHD are available in
 [https://github.com/SFG-CUHK/scorpio-test-cases/wiki](https://github.com/SFG-CUHK/scorpio-test-cases/wiki).
 
-$$
-$$
+---
+
+References
+
+[^4]
