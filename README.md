@@ -2,8 +2,6 @@
 
 <h2 align='center'>Overview </h2>
 
----
-
 The Scorpio MHD code with two fluid ambipolar diffusion solvers will be released in the near future.
 
 Scorpio is a grid-based two-fluid hydrodynamic (HD) and magnetohydrodynamic (MHD) code, with ambipolar diffusion (AD), self-gravity (SG) and turbulence driving.The development of Scorpio is led by Dr. Hsiang Hsu Wang based on his experience with the MHD code Antares and inspired by our AD observation on NGC 6334[^1]. Both Antares and NGC 6334 belong to the Scorpio constellation, thus the name of the code.
@@ -24,8 +22,6 @@ Scorpio is a grid-based two-fluid hydrodynamic (HD) and magnetohydrodynamic (MHD
 <br>
 <h2 align='center'>Introduction </h2>
 
----
-
 - In weakly ionized environments such as molecular clouds of ionization ratio $\sim 10^{-9} − 10^{-6}$, where the non-ideal effect, ambipolar diffusion (AD), plays an important role, decoupling of ions and neutrals cannot be ignored.
 - Single-fluid ideal MHD approach cannot cater our needs to study the physics of ions and neutrals accurately. Due to computational complexity, simplified approaches such as single-fluid strong coupling approximation and two-fluid heavy-ion approximation are commonly adopted in expense of accuracy.
 - Therefore, we developed a novel two-fluid non-ideal MHD code including AD effect to better capture the physics of ions and neutrals using the AD model [^2].
@@ -44,8 +40,6 @@ Scorpio is a grid-based two-fluid hydrodynamic (HD) and magnetohydrodynamic (MHD
 <br>
 <br>
 <h2 align='center'>Governing equations</h2>
-
----
 
 The conservative form: conserved variables $\mathbf{U}$, convective fluxes $\mathbf{F\_s} (\mathbf{U})$, self-gravity $\mathbf{S\_{G}}$, ambipolar diffusion $\mathbf{S\_{AD}}$
 
@@ -131,8 +125,6 @@ $$
 <br>
 <br>
 <h2 align='center'>Methods for Convective Fluxes</h2>
-
----
 
 The Godunov-type method involves solving Riemann problem combined with reconstruction at the cell interfaces, which follows the procedure reconstruct-evolve-average.
 
